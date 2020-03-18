@@ -57,7 +57,7 @@ public class LinhaEncomenda {
      */
     public double calculaValorDesconto() {
         double valor = this.quantidade * this.preco;
-        valor *= this.imposto; //e.g. imposto = 1.06
+        valor *= 1+this.imposto; //e.g. imposto = 1.06
         return this.calculaValorLinhaEnc()-valor;
     }  
     
@@ -121,12 +121,26 @@ public class LinhaEncomenda {
               le.getDescricao().equals(this.descricao) && 
               le.getPreco() == this.preco;
     }
-    
+ /*   
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Referencia: ").append(this.referencia);
         //..
         return sb.toString();
     }            
-    
+    */
+
+    public String toString() {
+        return "{" +
+            " referencia='" + getReferencia() + "'" +
+            ", descricao='" + getDescricao() + "'" +
+            ", preco='" + getPreco() + "'" +
+            ", quantidade='" + getQuantidade() + "'" +
+            ", imposto='" + getImposto() + "'" +
+            ", desconto='" + getDesconto() + "'" +
+            "}";
+    }
+
+
+
 }

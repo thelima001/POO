@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
+// import java.util.List;
 import java.util.stream.Collectors;
 
 public class Encomenda{
@@ -118,9 +118,10 @@ public class Encomenda{
     }
 
 
-    public void push(LinhaEncomenda e){
+    public void adicionaLinha(LinhaEncomenda e){
         this.encomendas.add(e);
     }
+
 
     public void pop(){
     if (!this.encomendas.isEmpty()) this.encomendas.remove(encomendas.size() - 1);
@@ -132,8 +133,47 @@ public class Encomenda{
     }
 
 
+    public double calculaValorTotal(){
+        double r = 0;
+        for (LinhaEncomenda l : encomendas){
+           r += l.calculaValorLinhaEnc();
+        }
+        
+        return r;
+    }
 
+    public double calculaValorDesconto(){
+        double r = 0;
+        for (LinhaEncomenda l : encomendas){
+           r += l.calculaValorDesconto();
+        }
+        
+        return r;
+    }
 
+    public double numeroTotalProdutos(){
+        double r = 0;
+        for (LinhaEncomenda l : encomendas){
+            r += l.getQuantidade();
+         }
+
+         return r;
+
+    }
+
+    public boolean existeProdutoEncomenda(String refProduto){
+        for (LinhaEncomenda l : encomendas){
+            if (l.getReferencia() == refProduto) return true;
+         }
+
+         return false;
+    }
+
+    public void removeProduto(String codProd){
+        for (LinhaEncomenda l : encomendas){
+            if (l.getReferencia() == codProd) encomendas.remove(l);
+         }
+    }
 
 
 
